@@ -41,7 +41,6 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(187,141,244,0.7);
 	z-index: 100000;
 	display: none;
 	padding-top: 75px;
@@ -174,6 +173,18 @@
 
 }
 
+@media (max-width: 970px ) {
+
+	.gallery4-full-image.post_info {
+		display: none;
+	}
+	
+	.gallery4-full-image {
+		width: 33.333333333333%;
+	}
+	
+}
+
 
 @media (max-width: 640px) {
 	.image-menu-wrapper {
@@ -205,10 +216,11 @@
 	}
 
 	.post-full-image-container span.image-menu-name {
-		width: 33% !important;
+		width: 33%;
 	}
 	
 	.image-menu-wrapper .left_arrow, .image-menu-wrapper .right_arrow {
 		padding: 0 !important;
 	}
 }
+

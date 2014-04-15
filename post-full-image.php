@@ -1,23 +1,33 @@
 <?php
 	widget_css();
 	widget_javascript();
+	for ( $forum_ctr = 1; $forum_ctr <=7; $forum_ctr++ ) {
+		$icon_url = widget_data_url($widget_config['code'], 'full_image_post_icon-'.$forum_ctr );
+		$icon_valid = @get_headers($icon_url);
+		if ( $icon_valid[0] == 'HTTP/1.1 404 Not Found') $icon_url = '';
+		$posts_full_image[] = array( 'url' => $widget_config['forum'.$forum_ctr], 'name' => $widget_config['full_image_menu_name'.$forum_ctr], 'icon_url' => $icon_url  );
+	}
+	if ( empty($posts_full_image) ) $posts_full_image[] = array( 'url' => bo_table(1) );
 ?>
 <div class='post-full-image-container'>
-<div class='panel-titles'>Panel Title</div>
+<div class='panel-titles'><?=$widget_config['title']?></div>
 <?
-	$posts_full_image = $widget_config['menus'];
-	$title_colors = $widget_config['title_colors'];
-	$color = 0; $i = 0;
+	$title_colors = array( '#ff9b38', '#ffaf30', '#ec5c60', '#bb8df4', '#ff7271', '#ffaf30', '#ff7271', '#b1c516', '#70bcd2', '#8ba6ff' );
+	$color = 0; $menu_color = 0; $i = 0;
 	echo "<div class='image-menu-wrapper' style='background: url(".x::url()."/widget/$widget_config[name]/menu_container_bg.png)'>
 			<div class='inner'>
 				<div class='left_arrow'><img src='".x::url()."/widget/$widget_config[name]/left_arrow.png'/></div>
 					<div class='image-menu'>";
-						foreach ( $posts_full_image as $menu ) { ?>
+						foreach ( $posts_full_image as $menu ) { 
+							$menu_color++;?>
 							<span class='image-menu-name' menu_name="<?=$menu['url']?>">
 								<span class='inner <? if ( $i++ == 0 ) echo "selected"?>'>
 									<div class='menu-photo'>
-										<img src="<?=x::theme_url('img/menu1_noimage.png')?>"/>
-										<div class='menu-overlay'><?=$menu['name']?></div>
+										<? if ( empty($menu['icon_url']) ) $imgsrc = x::theme_url('img/menu1_noimage.png'); 
+											else $imgsrc = $menu['icon_url'];
+										?>
+										<img src="<?=$imgsrc?>"/>
+										<div class='menu-overlay' style="opacity: 0.7; background-color: <?=$title_colors[$menu_color]?>"><?=$menu['name']?></div>
 									</div>
 									<?=$menu['name']?>
 								</span>
