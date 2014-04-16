@@ -1,7 +1,6 @@
 $(function(){
 	var image1_count = $(".image-menu-wrapper .image-menu .image-menu-name").length, current_row1 = 1, columns, max_rows1;
 	max_rows_1();
-	
 
 	/* Image 1 Menu NAV*/
 	$(".image-menu-wrapper .left_arrow").click(function(){

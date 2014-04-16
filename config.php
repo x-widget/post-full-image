@@ -11,7 +11,7 @@
 		echo "<br>";
 	}
 
-	include widget_config_form('height');
+	include widget_config_form('height'); 
 	include widget_config_form('width');
 	include widget_config_form('title');
 	include widget_config_form( 'forum', array(	'no' => 7) );
