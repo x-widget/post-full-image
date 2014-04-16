@@ -1,4 +1,4 @@
-<?php
+	<?php
 	widget_css();
 	widget_javascript();
 	
@@ -6,7 +6,7 @@
 	$height = $widget_config['height'];
 	if ( empty($width) ) $width = 270;
 	if ( empty($height) ) $height = 280;
-	
+	 
 	for ( $forum_ctr = 1; $forum_ctr <=7; $forum_ctr++ ) {
 		$menu_url = $widget_config['forum'.$forum_ctr];
 		if ( empty($menu_url) ) continue;
@@ -36,7 +36,7 @@
 							<span class='image-menu-name' menu_name="<?=$menu['url']?>">
 								<span class='inner <? if ( $i++ == 0 ) echo "selected"?>'>
 									<div class='menu-photo'>
-										<? if ( empty($menu['icon_url']) ) $imgsrc = x::theme_url('img/menu1_noimage.png'); 
+										<? if ( empty($menu['icon_url']) ) $imgsrc = x::url()."/widget/$widget_config[name]/menu1_noimage.png"; 
 											else $imgsrc = $menu['icon_url'];
 										?>
 										<img src="<?=$imgsrc?>"/>
