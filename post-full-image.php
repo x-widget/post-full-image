@@ -6,7 +6,7 @@
 		$icon_valid = @get_headers($icon_url);
 		if ( $icon_valid[0] == 'HTTP/1.1 404 Not Found') $icon_url = '';
 		$posts_full_image[] = array( 'url' => $widget_config['forum'.$forum_ctr], 'name' => $widget_config['full_image_menu_name'.$forum_ctr], 'icon_url' => $icon_url  );
-	} 
+	}
 	if ( empty($posts_full_image) ) $posts_full_image[] = array( 'url' => bo_table(1) );
 ?>
 <div class='post-full-image-container'>

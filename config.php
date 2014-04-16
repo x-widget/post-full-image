@@ -1,7 +1,7 @@
 
 <div><br><b>Icons must be 105px height by 153px width</b></div>
 <?
-	include widget_config_form( 'forum', array(	'no' => 7, 'caption' => 'hey'.$i++) );
+	include widget_config_form( 'forum', array(	'no' => 7 ) );
 	for ($i=1; $i<=7; $i++) {
 		echo "<span class='caption'>Menu $i Name:</span> : <input type='text' name='full_image_menu_name$i' value='".$widget_config['full_image_menu_name'.$i]."'/>";
 
