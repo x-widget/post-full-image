@@ -1,13 +1,26 @@
 <?php
 	widget_css();
 	widget_javascript();
+	
+	$width = $widget_config['width'];
+	$height = $widget_config['height'];
+	if ( empty($width) ) $width = 270;
+	if ( empty($height) ) $height = 280;
+	
 	for ( $forum_ctr = 1; $forum_ctr <=7; $forum_ctr++ ) {
+		$menu_url = $widget_config['forum'.$forum_ctr];
+		if ( empty($menu_url) ) continue;
+		
 		$icon_url = widget_data_url($widget_config['code'], 'full_image_post_icon-'.$forum_ctr );
 		$icon_valid = @get_headers($icon_url);
 		if ( $icon_valid[0] == 'HTTP/1.1 404 Not Found') $icon_url = '';
-		$posts_full_image[] = array( 'url' => $widget_config['forum'.$forum_ctr], 'name' => $widget_config['full_image_menu_name'.$forum_ctr], 'icon_url' => $icon_url  );
+		
+		$menu_name = $widget_config['full_image_menu_name'.$forum_ctr];
+		if ( empty($menu_name) ) $menu_name = $menu_url;
+		
+		$posts_full_image[] = array( 'url' => $menu_url, 'name' => $menu_name, 'icon_url' => $icon_url  );
 	}
-	if ( empty($posts_full_image) ) $posts_full_image[] = array( 'url' => bo_table(1) );
+	if ( empty($posts_full_image) ) $posts_full_image[] = array( 'url' => bo_table(1) , 'name' => 'forum 1' );
 ?>
 <div class='post-full-image-container'>
 <div class='panel-titles'><?=$widget_config['title']?></div>
@@ -59,7 +72,7 @@
 				<div class='gallery4-full-image post_info <?=$forum['url']?>'>
 					<?
 						$img = "<img src='".x::url()."/widget/$widget_config[name]/transparent.png'/>";
-						$transparent_background = g::thumbnail_from_image_tag( $img, $forum['url'], $widget_config['width'], $widget_config['height'] );
+						$transparent_background = g::thumbnail_from_image_tag( $img, $forum['url'], $width, $height );
 					?>
 					<img src="<?=$transparent_background?>"/>
 					<div class='inner'>
@@ -71,16 +84,16 @@
 				
 				<?
 				foreach ( $list as $post ) {
-					$imgsrc = get_list_thumbnail($forum['url'], $post['wr_id'], $widget_config['width'], $widget_config['height']);
+					$imgsrc = get_list_thumbnail($forum['url'], $post['wr_id'], $width, $height);
 					if ( $imgsrc['src'] ) {
 						$img = $imgsrc['src'];
-					} elseif ( $image_from_tag = g::thumbnail_from_image_tag( $post['wr_content'], $forum['url'], $widget_config['width'], $widget_config['height'] )) {
+					} elseif ( $image_from_tag = g::thumbnail_from_image_tag( $post['wr_content'], $forum['url'], $width, $height )) {
 						$img = $image_from_tag;
-					} else $img = g::thumbnail_from_image_tag("<img src='".x::url()."/widget/$widget_config[name]/no-image.png'/>", $forum['url'], $widget_config['width'], $widget_config['height']);
+					} else $img = g::thumbnail_from_image_tag("<img src='".x::url()."/widget/$widget_config[name]/no-image.png'/>", $forum['url'], $width, $height);
 					?>
 						<div class='gallery4-full-image post_<?=$post_number++?>'>
 								<? if ( $post ) {
-										$url = $post['href'];
+										$url = g::url()."/bbs/board.php?bo_table=$forum[url]&wr_id=$post[wr_id]";
 										$subject = cut_str($post['wr_subject'],15,'');
 										$content = cut_str(strip_tags($post['wr_content']), 30,'...');
 								}
