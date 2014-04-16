@@ -80,6 +80,7 @@
 							<?=$bo_subject?>
 						</div>
 					</div>
+					<a href="<?=g::url()?>/bbs/board.php?bo_table=<?=$forum['url']?>" class='read_more'></a>
 				</div>
 				
 				<?
