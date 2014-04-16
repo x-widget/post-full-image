@@ -37,7 +37,7 @@
 								<span class='inner <? if ( $i++ == 0 ) echo "selected"?>'>
 									<div class='menu-photo'>
 										<? if ( empty($menu['icon_url']) ) $imgsrc = x::url()."/widget/$widget_config[name]/menu1_noimage.png"; 
-											else $imgsrc = $menu['icon_url'];
+											else $imgsrc = g::thumbnail_from_image_tag("<img src='$menu[icon_url]'/>", $menu[url], $width, $height);
 										?>
 										<img src="<?=$imgsrc?>"/>
 										<div class='menu-overlay' style="opacity: 0.7; background-color: <?=$title_colors[$menu_color]?>"><?=$menu['name']?></div>
