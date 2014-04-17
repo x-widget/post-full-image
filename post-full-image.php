@@ -6,7 +6,6 @@
 	$height = $widget_config['height'];
 	if ( empty($width) ) $width = 270;
 	if ( empty($height) ) $height = 280;
-	 
 	for ( $forum_ctr = 1; $forum_ctr <=7; $forum_ctr++ ) {
 		$menu_url = $widget_config['forum'.$forum_ctr];
 		if ( empty($menu_url) ) continue;
@@ -18,7 +17,7 @@
 		$menu_name = $widget_config['full_image_menu_name'.$forum_ctr];
 		if ( empty($menu_name) ) $menu_name = $menu_url;
 		
-		$posts_full_image[] = array( 'url' => $menu_url, 'name' => $menu_name, 'icon_url' => $icon_url  );
+		$posts_full_image[] = array( 'url' => $menu_url, 'name' => $menu_name, 'info' => $widget_config["full_image_menu_info$forum_ctr"], 'icon_url' => $icon_url  );
 	}
 	if ( empty($posts_full_image) ) $posts_full_image[] = array( 'url' => bo_table(1) , 'name' => 'forum 1' );
 ?>
@@ -54,7 +53,6 @@
 	<?
 	foreach ( $posts_full_image as $forum ) { 
 		$list = db::rows("select * from $g5[write_prefix]$forum[url] where wr_is_comment = 0 order by wr_num limit 0, 3 ");
-		$bo_subject = db::result("SELECT bo_subject FROM $g5[board_table] WHERE bo_table='$forum[url]'");
 	?>
 		<div class='post-full-image <? if ( $color++ == 0 ) echo "selected"?> <?=$forum['url']?>'>
 			<style>
@@ -77,7 +75,10 @@
 					<img src="<?=$transparent_background?>"/>
 					<div class='inner'>
 						<div class='post_subject'>
-							<?=$bo_subject?>
+							<?=$forum['name']?>
+						</div>
+						<div class='post_information'>
+							<?=$forum['info']?>
 						</div>
 					</div>
 					<a href="<?=g::url()?>/bbs/board.php?bo_table=<?=$forum['url']?>" class='read_more'></a>

@@ -183,6 +183,15 @@
 
 }
 
+.gallery4-full-image.post_info .post_information {
+	font-size: 15px;
+	margin: 10px 0;
+	height: 170px;
+	overflow: hidden;
+	word-break: break-all;
+	line-heightt: 140%;
+}
+
 @media (max-width: 970px ) {
 
 	.gallery4-full-image.post_info {
