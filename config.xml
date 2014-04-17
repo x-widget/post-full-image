@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
 	<type>widget</type>
-	<id>post-full-image</id>
+	<id>widget post-full-image</id>
 	<category>
 		<main>post</main>
 	</category>
