@@ -6,10 +6,10 @@
 		<main>post</main>
 	</category>
 	<name>
-		<en>Sample Widget</en>
+		<en>Post Full Image</en>
 		<ko>샘플 위젯</ko>
 	</name>
-	<version>0.5</version>
+	<version>1.0</version>
 	<author>X-Team</author>
 	<email>philgohelp@gmail.com</email>
 	<homepage>http://www.philgo.net</homepage>
