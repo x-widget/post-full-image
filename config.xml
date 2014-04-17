@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <config>
-	<type>widget</type>
 	<id>widget post-full-image</id>
+	<type>widget</type>
 	<category>
 		<main>post</main>
+		<sub>latest</sub>
 	</category>
 	<name>
 		<en>Post Full Image</en>
