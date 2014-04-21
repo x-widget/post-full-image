@@ -19,7 +19,7 @@
 		
 		$posts_full_image[] = array( 'url' => $menu_url, 'name' => $menu_name, 'info' => $widget_config["full_image_menu_info$forum_ctr"], 'icon_url' => $icon_url  );
 	}
-	if ( empty($posts_full_image) ) $posts_full_image[] = array( 'url' => bo_table(1) , 'name' => 'forum 1' );
+	if ( empty($posts_full_image) ) $posts_full_image[] = array( 'url' => $widget_config['default_forum_id'] , 'name' => 'default forum' );
 ?>
 <div class='post-full-image-container'>
 <div class='panel-titles'><?=$widget_config['title']?></div>
@@ -86,12 +86,13 @@
 				
 				<?
 				foreach ( $list as $post ) {
-					$imgsrc = get_list_thumbnail($forum['url'], $post['wr_id'], $width, $height);
-					if ( $imgsrc['src'] ) {
-						$img = $imgsrc['src'];
-					} elseif ( $image_from_tag = g::thumbnail_from_image_tag( $post['wr_content'], $forum['url'], $width, $height )) {
+					$imgsrc = x::post_thumbnail($forum['url'], $post['wr_id'], $width, $height);
+					$img = $imgsrc['src'];
+					if ( empty($img) ) { 
+						$image_from_tag = g::thumbnail_from_image_tag( $post['wr_content'], $forum['url'], $width, $height );
 						$img = $image_from_tag;
-					} else $img = g::thumbnail_from_image_tag("<img src='".x::url()."/widget/$widget_config[name]/no-image.png'/>", $forum['url'], $width, $height);
+						if ( empty($img) ) $img = g::thumbnail_from_image_tag("<img src='".x::url()."/widget/$widget_config[name]/no-image.png'/>", $forum['url'], $width, $height);
+					}
 					?>
 						<div class='gallery4-full-image post_<?=$post_number++?>'>
 								<? if ( $post ) {
