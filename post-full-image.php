@@ -130,3 +130,12 @@
 	</div>
 	<?}?>
 </div>
+
+
+<? if ( etc::old_ie() ) { ?>
+	<style>
+		.gallery4-full-image {	
+			width: 24.99%;
+		}
+	</style>
+<? } ?>
